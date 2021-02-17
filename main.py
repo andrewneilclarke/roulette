@@ -85,7 +85,7 @@ def take_bet():
 def roll_ball():
     global roll
     roll = r()
-    t.sleep(1.5)
+    
 
 def check_win():
     global win
@@ -95,7 +95,7 @@ def check_win():
     global colour_choice
     global even_choice
     global twelve_choice
-    t.sleep(5)
+    t.sleep(1)
     #reset outcomes
     win = False
     lose = False
