@@ -1,4 +1,3 @@
-import random
 import time as t
 from roulette import Roulette as r
 
