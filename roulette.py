@@ -46,3 +46,6 @@ class Roulette():
 			return 'Second 12'
 		else:
 			return 'Third 12'
+
+	def print_spins():
+		print('Spin no....', Roulette.spins)

@@ -85,7 +85,7 @@ def take_bet():
 def roll_ball():
     global roll
     roll = r()
-    t.sleep(2.0)
+    t.sleep(1.5)
 
 def check_win():
     global win
@@ -95,12 +95,13 @@ def check_win():
     global colour_choice
     global even_choice
     global twelve_choice
+    t.sleep(5)
     #reset outcomes
     win = False
     lose = False
     #check colour against result 
     print("Result: " + str(roll.number) + " " + roll.colour)
-    t.sleep(1)
+    t.sleep(1.5)
     if bet_type == 1:  
         if colour_choice.upper() in roll.colour:
             win = True
@@ -157,6 +158,7 @@ def play_game():
     display_table()
     take_bet()
     roll_ball()
+    r.print_spins()
     check_win()
     increment_bank()
     check_if_broke()
