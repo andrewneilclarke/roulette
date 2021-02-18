@@ -40,8 +40,8 @@ def take_bet():
     even_choice = ""
     twelve_choice = ""
     bet_type = None
+    #assign bet amount
     while betamount == 0:
-        #assign bet amount
         try:
             betamount = int(input(f"\nBet amount? (€" + str(bank) + " available)\n"))
         except ValueError:
@@ -50,17 +50,16 @@ def take_bet():
         if betamount > bank:
             betamount = bank
         print("€" + str(betamount))
-        
+    #assign bet type   
     while bet_type == None:
-        #assign bet type
         try:
             bet_type = int(input("""What would you like to bet on?\n1. Red/Black\n2. Odd/Even\n3. First twelve, second twelve, third twelve
                 \nEnter a number \n"""))
         except ValueError:
             print("\nYou did not enter a valid number")
         
+        #assign bet choice and confirm this
         if bet_type == 1 or bet_type == 2 or bet_type == 3:
-            #assign colour choice
             if bet_type == 1:
                 print("\nRED  -- BLACK ")
                 colour_choice = (input("Red(r), black(b)? :"))
@@ -83,6 +82,7 @@ def take_bet():
 
 
 def roll_ball():
+    #create a roll
     global roll
     roll = r()
     
@@ -96,12 +96,13 @@ def check_win():
     global even_choice
     global twelve_choice
     t.sleep(1)
-    #reset outcomes
+    #reset the outcomes
     win = False
     lose = False
-    #check colour against result 
+    #print the outcome
     print("Result: " + str(roll.number) + " " + roll.colour)
     t.sleep(1.5)
+    #check colour against result and display win/loss
     if bet_type == 1:  
         if colour_choice.upper() in roll.colour:
             win = True
@@ -109,8 +110,10 @@ def check_win():
         else:
             lose = True
             print("You lose! €" + str(betamount))
-    #check odd/even against result
+    #check odd/even against result and display win/loss
     elif bet_type == 2:
+        print(roll.print_is_even())
+        t.sleep(0.5)
         if even_choice.upper() == "O" and roll.is_even() == False:
             win = True
             print("Odd wins! You win €" + str(betamount * 2))
@@ -120,16 +123,16 @@ def check_win():
         else:
             lose = True
             print("You lose! €" + str(betamount))
-    #check twelve against result
+    #check twelve against result and display win/loss
     elif bet_type == 3:
         print(roll.check_twelve() + "!")
-        if twelve_choice.upper() == 1 and roll.check_twelve() == "First 12":
+        if int(twelve_choice) == 1 and roll.check_twelve() == "First 12":
             win = True
             print("You win €" + str(betamount * 3))
-        elif twelve_choice.upper() == 2 and roll.check_twelve() == "Second 12":
+        elif int(twelve_choice) == 2 and roll.check_twelve() == "Second 12":
             win = True
             print("You win €" + str(betamount * 3))
-        elif twelve_choice.upper() == 3 and roll.check_twelve() == "Third 12":
+        elif int(twelve_choice) == 3 and roll.check_twelve() == "Third 12":
             win = True
             print("You win €" + str(betamount * 3))
         else:
@@ -153,8 +156,8 @@ def check_if_broke():
         broke = True
         print("Broke! Please leave!")
 
-
 def play_game():
+    #define the main game sequence
     display_table()
     take_bet()
     roll_ball()

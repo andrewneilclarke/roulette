@@ -6,6 +6,7 @@ class Roulette():
 	black = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35,]
 	green = [0]
 	spins = 0
+	even_status=''
 	
 	#represent the roulette wheel which has 37 outcomes
 	def __init__(self):
@@ -17,7 +18,7 @@ class Roulette():
 	    elif self.colour in self.green:
 	    	self.colour = 'Green'     
 
-	    Roulette.spins += 1   	
+	    Roulette.spins += 1
 
 	def check_colour(self):
 		if self.number in Roulette.red:
@@ -32,8 +33,10 @@ class Roulette():
 		if self.number == 0:
 			return False
 		elif self.number % 2 == 0:
+			self.even_status = "Even"
 			return True
 		else:
+			self.even_status = "Odd"
 			return False
 
 	def check_twelve(self):
@@ -49,3 +52,10 @@ class Roulette():
 
 	def print_spins():
 		print('Spin no....', Roulette.spins)
+
+	def print_is_even(self):
+		if self.is_even() == True:
+			self.even_status = "Even"
+		elif self.is_even() == False:
+			self.even_status = "Odd"
+		return '{} is {}'.format(self.number, self.even_status)
